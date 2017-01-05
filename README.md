@@ -26,6 +26,28 @@ Go to [Travis-CI Profile page](https://travis-ci.org/profile)
 2. Add .travis.yml file to your repository
 3. Trigger your first build with a git push
 
+## Heroku
+
+[Deploying Spring Boot apps to Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
+
+Although Spring Boot apps can be deployed to Heroku following the instructions in the web page, we can add a custom
+`Procfile` in the project root with a custom command such as:
+```
+web: java -Dserver.port=$PORT -jar target/mymovies-api-0.0.1-SNAPSHOT.jar
+```
+
+Files:
+1. Procfile (Optional, since we are deploying a Spring Boot app)
+2. system.properties (Optional, in case we wanted to specify custom properties)
+
+### Commands
+```
+heroku login
+heroku create //Alternatively: heroku create -n
+git push heroku master
+heroku open
+heroku logs --tail
+```
 
 ## Notes
 Note the use of the `@AutoConfigureMockMvc` together with @SpringBootTest to inject a MockMvc instance.
