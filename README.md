@@ -19,6 +19,14 @@ git remote add origin https://github.com/movies-app/mymovies-api.git
 git push -u origin master
 ```
 
+## Travis-CI
+Go to [Travis-CI Profile page](https://travis-ci.org/profile)
+
+1. Flick the repository switch on
+2. Add .travis.yml file to your repository
+3. Trigger your first build with a git push
+
+
 ## Notes
 Note the use of the `@AutoConfigureMockMvc` together with @SpringBootTest to inject a MockMvc instance.
 
