@@ -1,6 +1,8 @@
 My Movies API
 =============
 
+[![Build Status](https://travis-ci.org/movies-app/mymovies-api.svg?branch=master)](https://travis-ci.org/movies-app/mymovies-api)
+
 ## GitHub
 
 …or create a new repository on the command line
