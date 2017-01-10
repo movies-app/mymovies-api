@@ -4,7 +4,7 @@ My Movies API
 ## GitHub
 
 …or create a new repository on the command line
-```
+```bash
 echo "# mymovies-api" >> README.md
 git init
 git add README.md
@@ -14,7 +14,7 @@ git push -u origin master
 ```
 
 …or push an existing repository from the command line
-```
+```bash
 git remote add origin https://github.com/movies-app/mymovies-api.git
 git push -u origin master
 ```
@@ -28,11 +28,13 @@ Go to [Travis-CI Profile page](https://travis-ci.org/profile)
 
 ## Heroku
 
+### Heroku CLI
+
 [Deploying Spring Boot apps to Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
 
 Although Spring Boot apps can be deployed to Heroku following the instructions in the web page, we can add a custom
 `Procfile` in the project root with a custom command such as:
-```
+```bash
 web: java -Dserver.port=$PORT -jar target/mymovies-api-0.0.1-SNAPSHOT.jar
 ```
 
@@ -41,12 +43,33 @@ Files:
 2. system.properties (Optional, in case we wanted to specify custom properties)
 
 ### Commands
-```
+```bash
 heroku login
 heroku create //Alternatively: heroku create -n
 git push heroku master
 heroku open
 heroku logs --tail
+```
+### Heroku Maven Plugin
+
+[Deploying Java applications with the Heroku Maven plugin](https://devcenter.heroku.com/articles/deploying-java-applications-with-the-heroku-maven-plugin)
+
+```xml
+<plugin>
+    <groupId>com.heroku.sdk</groupId>
+    <artifactId>heroku-maven-plugin</artifactId>
+    <version>1.1.3</version>
+</plugin>
+```
+
+#### Deploy WAR
+```bash
+mvn clean heroku:deploy-war
+```
+#### Deploy Standalone app
+```bash
+mvn clean heroku:deploy
+
 ```
 
 ## Notes
