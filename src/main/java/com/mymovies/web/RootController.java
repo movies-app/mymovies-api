@@ -14,7 +14,7 @@ public class RootController {
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public String movieList() {
         LOG.debug("Welcome to my-movies-app");
-        return "{\"welcome\":\"Welcome to my-movies-app\"}";
+        return "{\"welcome\":\"Welcome to my-movies-app!!\"}";
     }
 
 }

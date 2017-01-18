@@ -25,6 +25,6 @@ public class RootControllerTest {
     void listOfServices() throws Exception{
         this.mockMvc.perform(get("/").accept(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
-                    .andExpect(content().json("{'welcome':'Welcome to my-movies-app'}"));
+                    .andExpect(content().json("{'welcome':'Welcome to my-movies-app!!'}"));
     }
 }

@@ -73,6 +73,17 @@ mvn clean heroku:deploy-war
 mvn clean heroku:deploy
 
 ```
+## Docker
+
+[Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker/)
+
+```bash
+docker build -t movies-api-docker .
+
+docker run -d -p 8080:8080 --name mymovies-api mymovies-api
+
+```
+
 
 ## Notes
 Note the use of the `@AutoConfigureMockMvc` together with @SpringBootTest to inject a MockMvc instance.
