@@ -6,13 +6,12 @@
 %>
 
 # application name
-application: mymovies-api
+application: <%= application_name %>
 
 # common settings for all environments
 common:
-  # Solution stack for elastic beanstalk, default is 64bit tomcat 7 for JAVA app
-  # solution_stack_name: 64bit Amazon Linux 2014.03 v1.0.3 running Tomcat 7 Java 7
-
+  # Solution stack for elastic beanstalk
+  # http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html#concepts.platforms.java
   solution_stack_name: 64bit Amazon Linux 2016.09 v2.5.0 running Tomcat 8 Java 8
 
   # Tier name for environments. Current supported values are WebServer and Worker
@@ -37,7 +36,6 @@ common:
   # Note that the string ".packages" will be added as a suffix to your bucket.
   # So, if "thoughtworks.simple" is passed as the bucket name, the actual s3 bucket
   # name will be thoughtworks.simple.packages. Default to application name.
-  # package_bucket: my-s3-bucket
   package_bucket: <%= "#{application_name}-#{environment}" %>
 
   # If phoenix mode is turned on, it will terminate the old elastic
@@ -53,8 +51,6 @@ common:
   # phoenix_mode set as true each time you deploy you will get a new environment and therefore
   # any changes to your tags.  If phoenix_mode is false then it will only use your tags on the
   # initial deploy.
-  # tags:
-  #   my_tag_key: my_tag_value
   tags:
      Project: <%= "#{application_name}-#{environment}"  %>
 
@@ -135,27 +131,31 @@ common:
     # go back to t1.micro.
     - namespace: aws:autoscaling:launchconfiguration
       option_name: InstanceType
-      value: m3.medium
+      value: t2.medium
 
     - namespace: aws:autoscaling:launchconfiguration
       option_name: EC2KeyName
       value: mfadmin-aws-auth
 
-    - namespace: aws:autoscaling:launchconfiguration
-      option_name: SSHSourceRestriction
-      value: "tcp, 22, 22, 127.0.0.0/32"
-
-    - namespace: aws:elasticbeanstalk:application
-      option_name: Application Healthcheck URL
-      value: "/"
-
     - namespace: aws:elasticbeanstalk:application:environment
       option_name: APPLICATION_NAME
-      value: my-movies-api
+      value: <%= "#{application_name}" %>
 
     - namespace: aws:elasticbeanstalk:application:environment
       option_name: SHORT_NAME
-      value: mymovies-api
+      value: <%= "#{short_name}" %>
+
+    - namespace: aws:elasticbeanstalk:healthreporting:system
+      option_name: SystemType
+      value: enhanced
+
+    - namespace: aws:elasticbeanstalk:environment
+      option_name: ServiceRole
+      value: aws-elasticbeanstalk-service-role
+
+    - namespace: aws:autoscaling:launchconfiguration
+      option_name: IamInstanceProfile
+      value: aws-elasticbeanstalk-ec2-role
 
 
   # If resources specified, eb_deployer will use the CloudFormation
@@ -188,32 +188,30 @@ common:
 # You can define environment here. Each environment can overriden any common settings
 environments:
   dev:
-    phoenix_mode: off
-
-    options_settings:
+      phoenix_mode: off
+      # example for overriding common settings
+      # strategy: inplace-update
+      option_settings:
         - namespace: aws:autoscaling:launchconfiguration
           option_name: ImageId
           value: ami-1b141471
 
         - namespace: aws:ec2:vpc
           option_name: VPCId
-          value: vpc-c041c6a6 
+          value: vpc-5829a63e
 
         - namespace: aws:ec2:vpc
           option_name: Subnets
-          value: subnet-78250b31, subnet-89dbacd2
+          value: subnet-e3784faa,subnet-a56418fe
 
         - namespace: aws:ec2:vpc
           option_name: ELBSubnets
-          value: subnet-78250b31, subnet-89dbacd2
+          value: subnet-e3784faa,subnet-a56418fe
 
+        # aws_security_group.sg-app-server
         - namespace: aws:autoscaling:launchconfiguration
           option_name: SecurityGroups
-          value: sg-aee335d2
-
-        - namespace: aws:autoscaling:launchconfiguration
-          option_name: IamInstanceProfile
-          value: aws-elasticbeanstalk-ec2-role
+          value: sg-e4bc1098
 
         - namespace: aws:autoscaling:asg
           option_name: MinSize
@@ -223,12 +221,30 @@ environments:
           option_name: MaxSize
           value: "1"
 
+        - namespace: aws:elasticbeanstalk:application:environment
+          option_name: spring.jpa.show-sql
+          value: "true"
+
+        - namespace: aws:elasticbeanstalk:application:environment
+          option_name: spring.datasource.username
+          value: "root"
+
+        - namespace: aws:elasticbeanstalk:application:environment
+          option_name: spring.datasource.password
+          value: "rootroot"
+
+        - namespace: aws:elasticbeanstalk:application:environment
+          option_name: spring.datasource.url
+          value: "jdbc:mysql://movies-db.caxtdulswnbw.us-east-1.rds.amazonaws.com:3306/movies"
+
+  stage:
+    phoenix_mode: off
     # example for overriding common settings
     # strategy: inplace-update
-  production:
     option_settings:
-      # example for overriding common option_settings: providing least redundancy
-      # in production environment.
-      # - namespace: aws:autoscaling:asg
-      #   option_name: MinSize
-      #    value: "2"
+
+
+  prod:
+      strategy: blue-only
+      phoenix_mode: on
+      option_settings:
