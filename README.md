@@ -85,6 +85,55 @@ docker run -d -p 8080:8080 --name mymovies-api mymovies-api
 ```
 
 
+## Terraform
+
+An AWS two-tier infrastructure in located under `terraform-aws/` folder. In order to create the same  you need to setup 
+the following:
+```bash
+export TF_VAR_aws_access_key=YOUR-AWS-KEY
+export TF_VAR_aws_secret_key=YOUR-AWS-SECRET
+export TF_VAR_aws_key_name=NAME-OF-PEM-FILE
+# Since a RDS database is created you need to set an username and password
+export TF_VAR_rds_db_username=DB-USERNAME
+export TF_VAR_rds_db_password=DB-PASSWORD
+
+```
+
+When ready, you have to run:
+```bash
+terraform plan
+terraform apply
+# Optional
+terraform show
+
+```
+
+If you wanted to destroy your environment, you need to run the following commands:
+```bash
+terraform plan -destroy
+terraform destroy
+
+```
+
+## EbDeployer
+
+[EbDeployer Docs](https://github.com/ThoughtWorksStudios/eb_deployer)
+
+An `eb_deployer` config is located under the `config/` folder. This config will allow you to deploy 
+`mymovies-api` in a ElasticBeanstalk environment using the AWS infrastructure that was created in the
+terraform step. We need to make sure that the AWS environement variables for access key and secret are set.
+
+```bash
+eb_deploy -p target/mymovies-api-0.0.1-SNAPSHOT.war -e dev
+```
+
+To destroy the environment
+```bash
+eb_deploy -d -e dev
+
+```
+
+
 ## Notes
 Note the use of the `@AutoConfigureMockMvc` together with @SpringBootTest to inject a MockMvc instance.
 
