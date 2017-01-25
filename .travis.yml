@@ -2,10 +2,10 @@ language: java
 jdk:
   - oraclejdk8
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: aXyPXIEcLxH1xT1tkFO/k/Y8HZmlJE9/oUNE6Ue3hUB+awj7TYwe1gvR2b1eBn/luAvggbu7FqZiI4HsqZWfofBImJGUiHYz1KREp87+/YlalAtqJd1mPrJpdI1lXVrOaDBj06lDGP86pzNrwy2WmDRfn3QrVNNPcFXWIt6gv7N3oM6Nf5ckJwQKlrKG4ao8De0wL9XLCCbn6jyga+IowuVg5fNUxzsgoU8/OP8oWnoRr53OBINhK5mgd7qMA0FdhhBGPzcQlR2aAPGlqHPvzFglWOGpUImvbHvlrohzl2xQCVc5Z0ugnMrTlS94zn5/WILvYL+EyhYPuEHDRm3vRWzmJJYQUOlWlXSu2scyjs8+PAT+m8/7Z5YRMfJsEddVJ0feuUgwkZzxLJLm2r3xxMvF+lmR990RId12bgm9YgvaR5SbQWTF+ejPIZ/XJ8GWIg5S4mi9+WJCwquZsI4G7KhDlCjvpVi1a5UsCZ2GgGre2BaUubtqihEWY3DGbt05Z4ieOlhH+epIlm9sJSY9Tt7gahFYiq0K7aRglAm3MScHcv554Ll5AIBL21x9mx8z2JfTZTiI32io2yiJjHfSkk65sjLUvbhl3JNvsM/ZYESjzrIcJEoGZuqbzl2J279hFLQL2y4KUf3SDJEIms91NfaIjWnQdLJzbrw6h/k8eqQ=
-  app: mighty-woodland-96744
-  on:
-    repo: movies-app/mymovies-api
+#deploy:
+#  provider: heroku
+#  api_key:
+#    secure: aXyPXIEcLxH1xT1tkFO/k/Y8HZmlJE9/oUNE6Ue3hUB+awj7TYwe1gvR2b1eBn/luAvggbu7FqZiI4HsqZWfofBImJGUiHYz1KREp87+/YlalAtqJd1mPrJpdI1lXVrOaDBj06lDGP86pzNrwy2WmDRfn3QrVNNPcFXWIt6gv7N3oM6Nf5ckJwQKlrKG4ao8De0wL9XLCCbn6jyga+IowuVg5fNUxzsgoU8/OP8oWnoRr53OBINhK5mgd7qMA0FdhhBGPzcQlR2aAPGlqHPvzFglWOGpUImvbHvlrohzl2xQCVc5Z0ugnMrTlS94zn5/WILvYL+EyhYPuEHDRm3vRWzmJJYQUOlWlXSu2scyjs8+PAT+m8/7Z5YRMfJsEddVJ0feuUgwkZzxLJLm2r3xxMvF+lmR990RId12bgm9YgvaR5SbQWTF+ejPIZ/XJ8GWIg5S4mi9+WJCwquZsI4G7KhDlCjvpVi1a5UsCZ2GgGre2BaUubtqihEWY3DGbt05Z4ieOlhH+epIlm9sJSY9Tt7gahFYiq0K7aRglAm3MScHcv554Ll5AIBL21x9mx8z2JfTZTiI32io2yiJjHfSkk65sjLUvbhl3JNvsM/ZYESjzrIcJEoGZuqbzl2J279hFLQL2y4KUf3SDJEIms91NfaIjWnQdLJzbrw6h/k8eqQ=
+#  app: mighty-woodland-96744
+#  on:
+#    repo: movies-app/mymovies-api
