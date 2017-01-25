@@ -23,4 +23,4 @@ dist/
 nbdist/
 .nb-gradle/
 
-evn-vars.sh
+.evn-vars.sh
