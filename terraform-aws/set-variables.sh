@@ -1,5 +1,0 @@
-export TF_VAR_aws_access_key=AKIAJXWDWRHKIKVBXBQQ
-export TF_VAR_aws_secret_key=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
-export TF_VAR_aws_key_name=mfadmin-aws-auth
-export TF_VAR_rds_db_username=root
-export TF_VAR_rds_db_password=rootroot
