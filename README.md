@@ -71,8 +71,15 @@ mvn clean heroku:deploy-war
 #### Deploy Standalone app
 ```bash
 mvn clean heroku:deploy
-
 ```
+
+#### Add PostgreSQL database
+
+```bash
+heroku addons:create heroku-postgresql:hobby-dev --app mighty-woodland-96744 --as PRIMARY_DB
+heroku config
+```
+
 ## Docker
 
 [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker/)

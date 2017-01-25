@@ -2,15 +2,15 @@ package com.mymovies.movies;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class Movie {
 
-    @Id @GeneratedValue Long id;
+    @Id @GeneratedValue(generator = "movieSeq")
+    @SequenceGenerator(name="movieSeq",sequenceName="MOVIE_SEQ", allocationSize=1)
+    Long id;
     String title;
     String summary;
 

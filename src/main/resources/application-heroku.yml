@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQL81Dialect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    initialize: true
+    username: iovnquruueplzr
+    password: d0895754797bb3af150c41884a82ad19f2f5e2217b9d5d8c3161c8986d3f8e49
+    url: jdbc:postgresql://ec2-54-243-185-132.compute-1.amazonaws.com:5432/daf6oucvvis9lr
+    data: classpath:postgresql-data.sql
